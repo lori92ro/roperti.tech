@@ -1,0 +1,73 @@
+/* Un foglio di quaderno a quadretti, con il margine rosso. Niente font né risorse esterne. */
+:root {
+  --carta: #f6f9fc;
+  --quadretto: #dfe8f1;
+  --inchiostro: #1d2a45;
+  --matita: #5a6a86;
+  --margine: #c7404d;
+  --q: 24px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --carta: #121a2b;
+    --quadretto: #1e2940;
+    --inchiostro: #e4ebf5;
+    --matita: #9aa8c0;
+    --margine: #e0646f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background-color: var(--carta);
+  background-image:
+    linear-gradient(var(--quadretto) 1px, transparent 1px),
+    linear-gradient(90deg, var(--quadretto) 1px, transparent 1px);
+  background-size: var(--q) var(--q);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--inchiostro);
+  font-family: "Iowan Old Style", "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-size: 1.125rem;
+  line-height: calc(var(--q) * 1.25);
+  /* il margine del quaderno */
+  border-left: 2px solid var(--margine);
+  margin-left: clamp(16px, 8vw, 96px);
+  padding: calc(var(--q) * 3) clamp(16px, 5vw, 48px) calc(var(--q) * 2);
+}
+
+main { max-width: 34rem; }
+
+h1 {
+  font-size: clamp(2.6rem, 9vw, 4.5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 calc(var(--q) * 1.5);
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: calc(var(--q) * 1.5) 0 calc(var(--q) * 0.25);
+}
+
+p { margin: 0 0 var(--q); }
+
+.sotto { color: var(--matita); }
+
+a {
+  color: var(--inchiostro);
+  text-decoration-color: var(--margine);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+a:hover { color: var(--margine); }
+a:focus-visible { outline: 2px solid var(--margine); outline-offset: 3px; border-radius: 2px; }
+
+footer { margin-top: calc(var(--q) * 3); font-size: 1rem; color: var(--matita); }
